@@ -64,8 +64,8 @@ class PersistentSSHConnection(object) :
             try :
                 os.mkdir(scp_local)
                 r = 0
-            except Exception, e:
-                print e
+            except (Exception) as e:
+                print(e)
 
         if stdout.strip() == 'file' or recurse :
             scp_remote = '%s@%s:%s'%(self.username,self.hostname,path)
@@ -105,15 +105,15 @@ if __name__ == '__main__' :
     hostname = raw_input('enter hostname: ')
 
     conn = PersistentSSHConnection(username,hostname)
-    print 'connected to %s, send ssh commands and watch yourself'%hostname
+    print('connected to %s, send ssh commands and watch yourself'%hostname)
 
     while True :
         cmd = raw_input('%s@%s ] '%(username,hostname))
         if cmd.strip() == 'exit' :
             break
         stdout, stderr = conn.send_cmd(cmd)
-        print 'stdout:'
-        print stdout
+        print('stdout:')
+        print(stdout)
 
-        print 'stderr:'
-        print stderr
+        print('stderr:')
+        print(stderr)
